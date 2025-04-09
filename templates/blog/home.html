@@ -1,0 +1,134 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load blog_extras %}
+
+{% block title %}Fitness Blog - Nutriție, Antrenamente și Lifestyle{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-lg-12 text-center text-white">
+                <h1 class="hero-title mb-3">Nutriție pentru performanță</h1>
+                <p class="hero-subtitle mb-4">Alimentează-ți corpul pentru rezultate optime</p>
+                <a href="{% url 'blog:all_articles' %}" class="btn hero-btn">Descoperă Articole <i class="fas fa-arrow-right ms-2"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="hero-indicators">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+    </div>
+</section>
+
+<!-- AdSense Below Hero -->
+<div class="container">
+    {% if adsense_locations.below_hero %}
+    <div class="adsense-container my-4" style="display: block;">
+        {{ adsense_locations.below_hero|safe }}
+    </div>
+    {% endif %}
+</div>
+
+<!-- Remove the separate logo section -->
+
+{% if latest_article %}
+    <!-- Featured Articles Section -->
+    <section class="articles-section py-5">
+        <div class="container">
+            <div class="section-header d-flex justify-content-between align-items-center mb-4">
+                <h2 class="section-title">Articole Recomandate</h2>
+                <a href="{% url 'blog:all_articles' %}" class="view-all">Vezi toate <i class="fas fa-arrow-right ms-1"></i></a>
+            </div>
+            <div class="row">
+                {% for article in recent_articles %}
+                    <div class="col-md-4 mb-4">
+                        <div class="article-card">
+                            <div class="article-img">
+                                <img src="{{ article.featured_image.url }}" alt="{{ article.title }}">
+                                <div class="article-category {{ article.category.slug }}">{{ article.category.name }}</div>
+                                <div class="article-time">{{ article.read_time }} min citire</div>
+                            </div>
+                            <div class="article-content">
+                                <h3 class="article-title"><a href="{% url 'blog:article_detail' article.slug %}">{{ article.title }}</a></h3>
+                                <p class="article-excerpt">{{ article.content|truncatechars:100 }}</p>
+                                <a href="{% url 'blog:article_detail' article.slug %}" class="read-more">Citește mai mult <i class="fas fa-arrow-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% else %}
+    <!-- No Articles Message -->
+    <section class="no-articles-section py-5">
+        <div class="container">
+            <div class="text-center">
+                <i class="fas fa-newspaper fa-3x mb-3 text-muted"></i>
+                <h2 class="section-title">Nu există articole momentan</h2>
+                <p class="text-muted">Revino în curând pentru conținut nou și interesant!</p>
+            </div>
+        </div>
+    </section>
+{% endif %}
+
+<!-- AdSense Middle Page -->
+{% if adsense_locations.middle_page %}
+<div class="adsense-container">
+    {{ adsense_locations.middle_page|safe }}
+</div>
+{% endif %}
+
+<!-- Dynamic Category Sections -->
+{% for category in categories %}
+    <section class="category-section {{ category.slug }}-section py-5">
+        <div class="container">
+            <div class="section-header d-flex align-items-center mb-4">
+                {% if category.icon %}
+                    <i class="fas {{ category.icon }} section-icon"></i>
+                {% else %}
+                    {% if category.slug == 'antrenament' %}
+                        <i class="fas fa-dumbbell section-icon"></i>
+                    {% elif category.slug == 'nutritie' %}
+                        <i class="fas fa-carrot section-icon"></i>
+                    {% elif category.slug == 'lifestyle' %}
+                        <i class="fas fa-heart section-icon"></i>
+                    {% else %}
+                        <i class="fas fa-book section-icon"></i>
+                    {% endif %}
+                {% endif %}
+                <h2 class="section-title mb-0">{{ category.name }}</h2>
+            </div>
+            <div class="row">
+                {% with articles=category_articles|get_item:category %}
+                    {% for article in articles %}
+                        <div class="col-md-4 mb-4">
+                            <div class="category-card">
+                                <div class="category-img">
+                                    <img src="{{ article.featured_image.url }}" alt="{{ article.title }}">
+                                    <div class="category-content">
+                                        <h3 class="category-title">
+                                            <a href="{% url 'blog:article_detail' article.slug %}">{{ article.title|truncate_title:30 }}</a>
+                                        </h3>
+                                        <div class="category-time">{{ article.read_time }} min citire</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endwith %}
+            </div>
+        </div>
+    </section>
+{% endfor %}
+
+<!-- AdSense Before Footer -->
+{% if adsense_locations.before_footer %}
+<div class="adsense-container">
+    {{ adsense_locations.before_footer|safe }}
+</div>
+{% endif %}
+{% endblock %}
