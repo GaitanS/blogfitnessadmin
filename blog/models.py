@@ -60,10 +60,24 @@ class NewsletterSubscriber(models.Model):
     def __str__(self):
         return self.email
 
+# Define choices for AdSense locations
+AD_LOCATION_CHOICES = [
+    ('below_header', 'Sub Antet (Liste)'),
+    ('before_footer', 'Înainte de Footer'),
+    ('above_content', 'Deasupra Conținut Articol'),
+    ('below_content', 'Sub Conținut Articol'),
+    ('below_hero', 'Sub Secțiunea Hero (Homepage)'),
+    ('middle_page', 'Mijloc Pagină (Homepage)'),
+]
 
 class AdSenseLocation(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Nume locație')
-    ad_code = models.TextField(verbose_name='Cod AdSense')
+    name = models.CharField(
+        max_length=100,
+        choices=AD_LOCATION_CHOICES,
+        unique=True, # Ensure only one entry per location
+        verbose_name='Nume locație'
+    )
+    ad_code = models.TextField(verbose_name='Cod AdSense', help_text="Codul complet <script>...</script> sau <ins>...</ins> de la AdSense.")
     is_active = models.BooleanField(default=True, verbose_name='Este activ')
 
     class Meta:
@@ -72,7 +86,8 @@ class AdSenseLocation(models.Model):
         ordering = ['name']
 
     def __str__(self):
-        return self.name
+        # Return the human-readable name from choices
+        return self.get_name_display()
 
 
 class SiteSettings(models.Model):

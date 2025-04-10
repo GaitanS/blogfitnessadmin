@@ -14,14 +14,34 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# Removed duplicate docstring below
 from django.contrib import admin
 from django.urls import path, include # Import include
 from django.conf import settings             # Import settings
 from django.conf.urls.static import static     # Import static
+from django.views.generic import TemplateView  # Import TemplateView
+from django.contrib.sitemaps.views import sitemap # Import sitemap view
+from blog.sitemaps import ArticleSitemap, CategorySitemap, StaticSitemap # Import sitemaps
+
+# Define sitemaps
+sitemaps = {
+    'articles': ArticleSitemap,
+    'categories': CategorySitemap,
+    'static': StaticSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')), # Include blog app urls
+
+    # Sitemap URL
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+
+    # Robots.txt URL
+    path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
+
+    # Ads.txt URL
+    path('ads.txt', TemplateView.as_view(template_name="ads.txt", content_type="text/plain")),
 ]
 
 # Add static and media file serving patterns for development (DEBUG=True)

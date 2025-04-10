@@ -18,7 +18,7 @@ def get_adsense_locations():
         for ad in AdSenseLocation.objects.filter(is_active=True)
     }
 
-@cache_page(60 * 15)  # Cache pentru 15 minute
+# @cache_page(60 * 15)  # Temporarily disabled caching for debugging homepage updates
 def home(request):
     # Get the latest article
     latest_article = Article.objects.order_by('-created_at').select_related('category').first()

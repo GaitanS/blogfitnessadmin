@@ -962,3 +962,31 @@ a:hover {
 #newsletter-message.text-danger {
     color: white !important; /* Use !important to ensure override */
 }
+
+/* Responsive Media in Article Content */
+.article-content img,
+.article-content video { /* Also apply to video tags if used */
+    max-width: 100%;
+    height: auto;
+    display: block; /* Prevents extra space below images */
+    margin: 1em 0; /* Add some vertical spacing */
+}
+
+/* Responsive Video Embeds (e.g., YouTube iframe) */
+/* Wrap the iframe in a div with this class in CKEditor source: <div class="video-responsive">...iframe...</div> */
+.video-responsive {
+    overflow: hidden;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    position: relative;
+    height: 0;
+    margin: 1em 0; /* Add some vertical spacing */
+}
+
+.video-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    border: 0; /* Remove default iframe border */
+}

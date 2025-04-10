@@ -31,6 +31,7 @@ ALLOWED_HOSTS = [] # Keep empty for local development initially
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin', # Added Jazzmin
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -134,3 +135,58 @@ MEDIA_ROOT = BASE_DIR / 'media' # Define local media root
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Basic Jazzmin settings (customize later if needed)
+JAZZMIN_SETTINGS = {
+    "site_title": "Fitness Blog Admin",
+    "site_header": "Fitness Blog",
+    "welcome_sign": "Bine ai venit!",
+    "copyright": "Fitness Blog",
+    "search_model": ["blog.Article", "blog.Category"], # Example search models
+    "topmenu_links": [
+        {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"model": "blog.Article"},
+        {"app": "blog"},
+    ],
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "blog.Category": "fas fa-folder",
+        "blog.Article": "fas fa-newspaper",
+        "blog.NewsletterSubscriber": "fas fa-envelope",
+        "blog.AdSenseLocation": "fas fa-ad",
+        "blog.SiteSettings": "fas fa-cog",
+    },
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "default",
+    # "dark_mode_theme": "darkly", # Uncomment for dark mode option
+}
+
+# CKEditor Configuration to allow iframes (for video embeds)
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full', # Or 'Custom' if you want to define specific buttons
+        'height': 300,
+        'width': '100%',
+        # Allow iframe tags and specific attributes needed for YouTube embeds
+        'allowedContent': True, # Allow all content - simplest approach
+        # More specific approach (if needed):
+        # 'allowedContent': 'h1 h2 h3 p blockquote strong em;' +
+        #                   'a[!href];' +
+        #                   'img[!src,alt,width,height];' +
+        #                   'iframe[src,width,height,frameborder,allowfullscreen,' +
+        #                   'allow,title,referrerpolicy,loading];' + # Add necessary iframe attributes
+        #                   'ul li;' +
+        #                   'ol li;' +
+        #                   'br;'
+        # Add any other plugins or configurations here
+        # 'extraPlugins': 'youtube', # Example if using a specific youtube plugin
+    },
+}
