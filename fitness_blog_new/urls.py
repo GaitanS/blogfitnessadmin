@@ -22,6 +22,9 @@ from django.conf.urls.static import static     # Import static
 from django.views.generic import TemplateView  # Import TemplateView
 from django.contrib.sitemaps.views import sitemap # Import sitemap view
 from blog.sitemaps import ArticleSitemap, CategorySitemap, StaticSitemap # Import sitemaps
+# Imports for CKEditor uploader
+from django.contrib.auth.decorators import login_required
+from ckeditor_uploader import views as ckeditor_views
 
 # Define sitemaps
 sitemaps = {
@@ -42,6 +45,9 @@ urlpatterns = [
 
     # Ads.txt URL
     path('ads.txt', TemplateView.as_view(template_name="ads.txt", content_type="text/plain")),
+
+    # CKEditor Upload URL (ensure user is logged in)
+    path('ckeditor/upload/', login_required(ckeditor_views.upload), name='ckeditor_upload'),
 ]
 
 # Add static and media file serving patterns for development (DEBUG=True)

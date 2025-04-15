@@ -1,4 +1,6 @@
 from django import template
+from django.utils.html import strip_tags
+import re
 
 register = template.Library()
 
@@ -20,3 +22,19 @@ def truncate_title(value, length):
     if len(value) > length:
         return value[:length] + "..."
     return value
+
+@register.filter(name='clean_html')
+def clean_html(value, length=100):
+    """
+    Removes HTML tags from content and truncates to the specified length.
+    Usage: {{ content|clean_html:100 }}
+    """
+    # Strip HTML tags
+    text = strip_tags(value)
+    # Remove extra whitespace
+    text = re.sub(r'\s+', ' ', text).strip()
+    # Truncate to specified length
+    length = int(length)
+    if len(text) > length:
+        return text[:length] + "..."
+    return text

@@ -169,6 +169,10 @@ JAZZMIN_UI_TWEAKS = {
     # "dark_mode_theme": "darkly", # Uncomment for dark mode option
 }
 
+# CKEditor Upload Settings
+CKEDITOR_UPLOAD_PATH = "uploads/" # Subdirectory within MEDIA_ROOT
+CKEDITOR_IMAGE_BACKEND = "pillow" # Use Pillow for image processing (optional)
+
 # CKEditor Configuration to allow iframes (for video embeds)
 CKEDITOR_CONFIGS = {
     'default': {
