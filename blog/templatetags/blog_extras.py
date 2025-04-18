@@ -1,6 +1,7 @@
 from django import template
 from django.utils.html import strip_tags
 import re
+from html import unescape
 
 register = template.Library()
 
@@ -26,13 +27,21 @@ def truncate_title(value, length):
 @register.filter(name='clean_html')
 def clean_html(value, length=100):
     """
-    Removes HTML tags from content and truncates to the specified length.
+    Removes HTML tags and entities from content and truncates to the specified length.
     Usage: {{ content|clean_html:100 }}
     """
+    if not value:
+        return ""
+
     # Strip HTML tags
     text = strip_tags(value)
+
+    # Decode HTML entities (like &nbsp; and &hellip;)
+    text = unescape(text)
+
     # Remove extra whitespace
     text = re.sub(r'\s+', ' ', text).strip()
+
     # Truncate to specified length
     length = int(length)
     if len(text) > length:

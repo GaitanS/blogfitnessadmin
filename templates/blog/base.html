@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Google AdSense Meta Tag -->
     <meta name="google-adsense-account" content="ca-pub-5227061222218296">
-    
+
     <!-- Google AdSense Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5227061222218296" crossorigin="anonymous"></script>
-    
+
     <!-- URL Canonic -->
     <link rel="canonical" href="https://ghidulfit365.ro{{ request.path }}" />
-    
+
     <!-- Meta Tags pentru Open Graph -->
     <meta property="og:url" content="https://ghidulfit365.ro{{ request.path }}" />
-    
+
     <title>{% block title %}Fitness Blog{% endblock %}</title>
     <meta name="description" content="{% block meta_description %}{% endblock %}">
     <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -104,8 +104,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h5>Despre noi</h5>
-                    <p>Blogul nostru este dedicat pasionaților de fitness și nutriție care caută informații de calitate pentru un stil de viață sănătos.</p>
+                    <h5>{{ site_settings.footer_about_title }}</h5>
+                    <p>{{ site_settings.footer_about_text }}</p>
                 </div>
                 <div class="col-md-4">
                     <h5>Categorii</h5>
