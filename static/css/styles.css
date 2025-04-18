@@ -1,4 +1,4 @@
-/* 
+/*
 * Fitness Blog - Main Stylesheet
 */
 
@@ -13,7 +13,7 @@
     --light-bg: #f9f9f9;
     --gray-color: #6c757d;
     --border-color: #e9ecef;
-    
+
     /* Category Colors */
     --antrenament-color: #ff5722;
     --nutritie-color: #4caf50;
@@ -77,18 +77,18 @@ a:hover {
     .navbar-logo {
         height: 80px;
     }
-    
+
     .navbar-brand.mx-auto {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
         z-index: 1030;
     }
-    
+
     .navbar > .container {
         position: relative;
     }
-    
+
     /* Center calculator elements on mobile */
     .calculator-container {
         display: flex;
@@ -97,7 +97,7 @@ a:hover {
         justify-content: center;
         text-align: center;
     }
-    
+
     .calculator-btn {
         width: 100%;
         max-width: 300px;
@@ -261,7 +261,7 @@ a:hover {
 }
 
 /* Hero Logo */
-/* 
+/*
 .hero-logo {
     max-width: 200px;
     height: auto;
@@ -524,11 +524,11 @@ a:hover {
     .category-title {
         font-size: 1.2rem;
     }
-    
+
     .category-content {
         padding: 1rem;
     }
-    
+
     .category-img::before {
         background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
     }
@@ -745,11 +745,11 @@ a:hover {
     .hero-title {
         font-size: 2.5rem;
     }
-    
+
     .hero-subtitle {
         font-size: 1.2rem;
     }
-    
+
     .article-header .article-title {
         font-size: 2rem;
     }
@@ -759,27 +759,27 @@ a:hover {
     .hero-section {
         height: 450px;
     }
-    
+
     .hero-title {
         font-size: 2rem;
     }
-    
+
     .article-header {
         height: 350px;
     }
-    
+
     .article-header .article-title {
         font-size: 1.75rem;
     }
-    
+
     .share-buttons {
         flex-direction: column;
     }
-    
+
     .category-title {
         font-size: 1.3rem;
     }
-    
+
     .category-content {
         padding: 1.25rem;
     }
@@ -789,24 +789,24 @@ a:hover {
     .hero-title {
         font-size: 1.75rem;
     }
-    
+
     .hero-subtitle {
         font-size: 1rem;
     }
-    
+
     .article-meta {
         flex-direction: column;
         gap: 0.5rem;
     }
-    
+
     .category-title {
         font-size: 1.2rem;
     }
-    
+
     .category-content {
         padding: 1rem;
     }
-    
+
     .category-img::before {
         background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
     }
@@ -863,7 +863,7 @@ a:hover {
         font-size: 2rem;
         padding: 0 15px;
     }
-    
+
     .category-icon {
         font-size: 2.5rem;
     }
@@ -951,7 +951,7 @@ a:hover {
     .cookie-consent-modal .modal-dialog {
         margin: 0.5rem;
     }
-    
+
     .cookie-settings-btn {
         padding: 8px 12px;
         font-size: 12px;
@@ -963,30 +963,55 @@ a:hover {
     color: white !important; /* Use !important to ensure override */
 }
 
-/* Responsive Media in Article Content */
-.article-content img,
-.article-content video { /* Also apply to video tags if used */
+/* Article Content Styling */
+.article-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.article-content p {
+    margin-bottom: 1.5rem;
+}
+
+.article-content h2,
+.article-content h3,
+.article-content h4 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.article-content ul,
+.article-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.article-content li {
+    margin-bottom: 0.5rem;
+}
+
+.article-content img {
     max-width: 100%;
     height: auto;
-    display: block; /* Prevents extra space below images */
-    margin: 1em 0; /* Add some vertical spacing */
+    margin: 1.5rem 0;
+    border-radius: 8px;
 }
 
-/* Responsive Video Embeds (e.g., YouTube iframe) */
-/* Wrap the iframe in a div with this class in CKEditor source: <div class="video-responsive">...iframe...</div> */
-.video-responsive {
-    overflow: hidden;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
-    position: relative;
-    height: 0;
-    margin: 1em 0; /* Add some vertical spacing */
+.article-content blockquote {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    font-style: italic;
+    color: var(--gray-color);
 }
 
-.video-responsive iframe {
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    border: 0; /* Remove default iframe border */
+.article-content a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.article-content a:hover {
+    color: var(--primary-hover);
 }

@@ -1,6 +1,5 @@
 {% extends 'blog/base.html' %}
 {% load static %}
-{% load blog_extras %}
 
 {% block title %}{{ article.title }} - Fitness Blog{% endblock %}
 
@@ -40,7 +39,7 @@
                     {% endif %}
 
                     <div class="article-content">
-                        {{ article.content|safe|linebreaks }}
+                        {{ article.content|safe }}
                     </div>
 
                     <!-- Social Share -->
