@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Article, AdSenseLocation, NewsletterSubscriber, SiteSettings
+from .models import Category, Article, AdSenseLocation, NewsletterSubscriber, SiteSettings, Comment
 
 # Înregistrează modelele cu admin-ul standard Django
 admin.site.register(Category)
@@ -35,3 +35,22 @@ Permite adăugarea doar dacă nu există deja o instanță.
 Nu permite ștergerea setărilor site-ului.
         """
         return False
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    """
+    Admin pentru comentarii.
+    """
+    list_display = ('name', 'article', 'created_at', 'is_approved')
+    list_filter = ('is_approved', 'created_at')
+    search_fields = ('name', 'email', 'content', 'article__title')
+    actions = ['approve_comments', 'disapprove_comments']
+
+    def approve_comments(self, request, queryset):
+        queryset.update(is_approved=True)
+    approve_comments.short_description = 'Aprobă comentariile selectate'
+
+    def disapprove_comments(self, request, queryset):
+        queryset.update(is_approved=False)
+    disapprove_comments.short_description = 'Dezaprobă comentariile selectate'

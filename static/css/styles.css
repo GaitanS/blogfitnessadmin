@@ -963,6 +963,55 @@ a:hover {
     color: white !important; /* Use !important to ensure override */
 }
 
+/* Comments Section Styling */
+.comments-section {
+    border-top: 1px solid #e9ecef;
+    padding-top: 2rem;
+}
+
+.comments-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.comment-item {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-left: 3px solid var(--primary-color);
+}
+
+.comment-author h5 {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.comment-content {
+    margin-top: 0.75rem;
+}
+
+.comment-content p {
+    margin-bottom: 0;
+}
+
+.comment-form-container {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.comment-form label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.no-comments {
+    font-style: italic;
+    color: #6c757d;
+}
+
 /* Article Content Styling */
 .article-content {
     font-size: 1.1rem;

@@ -90,27 +90,49 @@ class AdSenseLocation(models.Model):
         return self.get_name_display()
 
 
-class SiteSettings(models.Model):
-    phone = models.CharField(max_length=20, verbose_name='Telefon', blank=True)
-    email = models.EmailField(verbose_name='Email', blank=True)
-    address = models.TextField(verbose_name='Adresă', blank=True)
-    facebook_url = models.URLField(verbose_name='Link Facebook', blank=True)
-    instagram_url = models.URLField(verbose_name='Link Instagram', blank=True)
-    youtube_url = models.URLField(verbose_name='Link YouTube', blank=True)
 
-    # Adăugăm câmpurile pentru footer
-    footer_about_title = models.CharField(max_length=100, default="Despre noi", verbose_name="Titlu secțiune despre")
-    footer_about_text = models.TextField(default="Blogul nostru este dedicat pasionaților de fitness și nutriție care caută informații de calitate pentru un stil de viață sănătos.", verbose_name="Text secțiune despre")
+class Comment(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments', verbose_name='Articol')
+    name = models.CharField(max_length=100, verbose_name='Nume')
+    email = models.EmailField(verbose_name='Email')
+    content = models.TextField(verbose_name='Conținut')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Data creării')
+    is_approved = models.BooleanField(default=True, verbose_name='Este aprobat')
+
+    class Meta:
+        verbose_name = 'Comentariu'
+        verbose_name_plural = 'Comentarii'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f'Comentariu de {self.name} la {self.article.title}'
+
+
+class SiteSettings(models.Model):
+    phone = models.CharField(max_length=20, blank=True, null=True, verbose_name='Telefon')
+    email = models.EmailField(blank=True, null=True, verbose_name='Email')
+    address = models.CharField(max_length=200, blank=True, null=True, verbose_name='Adresă')
+
+    # Social media
+    facebook_url = models.URLField(blank=True, null=True, verbose_name='URL Facebook')
+    instagram_url = models.URLField(blank=True, null=True, verbose_name='URL Instagram')
+    youtube_url = models.URLField(blank=True, null=True, verbose_name='URL YouTube')
+
+    # Footer about section
+    footer_about_title = models.CharField(max_length=100, blank=True, null=True, verbose_name='Titlu secțiune despre')
+    footer_about_text = models.TextField(blank=True, null=True, verbose_name='Text secțiune despre')
 
     class Meta:
         verbose_name = 'Setări Site'
         verbose_name_plural = 'Setări Site'
 
     def __str__(self):
-        return 'Setări site'
+        return 'Setări Site'
 
     @classmethod
     def get_settings(cls):
-        """Returnează setările site-ului sau creează o instanță dacă nu există."""
+        """
+        Returnează instanța de setări sau creează una nouă dacă nu există.
+        """
         settings, created = cls.objects.get_or_create(pk=1)
         return settings
