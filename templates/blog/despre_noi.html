@@ -1,0 +1,80 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}Despre noi - Fitness Blog{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <article class="article-content">
+                <div class="article-body">
+                    <p>Am început acest proiect dintr-o nevoie reală: mi-a fost mereu greu să găsesc informații clare și accesibile despre echilibrul dintre nutriție și mișcare – mai ales atunci când ai un job de birou și o viață plină de responsabilități.</p>
+
+                    <p>Dacă și tu simți că lumea fitness-ului este plină de mituri, promisiuni deșarte și reclame la produse inutile, ești în locul potrivit.</p>
+
+                    <h3>De ce facem asta?</h3>
+
+                    <p>Datorită:</p>
+                    <ul>
+                        <li>Influenceri care promit rezultate peste noapte,</li>
+                        <li>Produse "miraculoase" fără valoare reală,</li>
+                        <li>Și sfaturi contradictorii care mai mult încurcă decât ajută.</li>
+                    </ul>
+
+                    <p>Scopul nostru este să oferim informații testate, bazate pe cercetări științifice, dar mai ales aplicabile în viața reală. Informații care chiar funcționează.</p>
+
+                    <h3>Ce vei învăța aici?</h3>
+
+                    <p>Vei descoperi cum să:</p>
+                    <ul>
+                        <li>Deosebești miturile populare din fitness de adevărurile fundamentate științific,</li>
+                        <li>Înțelegi principiile nutriției pentru a construi masă musculară sau a reduce grăsimea corporală,</li>
+                        <li>Aplici aceste cunoștințe în rutina ta zilnică, fără să devii expert în nutriție sau sport.</li>
+                    </ul>
+
+                    <h3>De ce suntem diferiți?</h3>
+
+                    <p>Noi nu ne oprim la teoria clasică despre calorii și macronutrienți. Mergem mai departe:</p>
+                    <ul>
+                        <li>Te ajutăm să înțelegi ce funcționează pentru tine,</li>
+                        <li>Îți oferim principii și instrumente flexibile, adaptabile obiectivelor și stilului tău de viață,</li>
+                        <li>Promovăm o abordare realistă, sustenabilă și fără scurtături.</li>
+                    </ul>
+
+                    <h3>O călătorie fără scurtături</h3>
+
+                    <div class="text-center my-4">
+                        <img src="/media/articles/1.png" alt="A road with trees and mountains in the background" class="img-fluid rounded shadow">
+                    </div>
+
+                    <blockquote class="blockquote text-center my-4">
+                        <p class="mb-0">„Nu există scurtături către un loc care merită să ajungi."</p>
+                        <footer class="blockquote-footer mt-2">Beverly Sills</footer>
+                    </blockquote>
+
+                    <p>Știm că drumul către un stil de viață sănătos poate fi provocator. Dar nu trebuie să fie greu sau plictisitor. Suntem aici ca să-ți facem această călătorie cât mai plăcută și accesibilă, pas cu pas.</p>
+
+                    <h3>Îți mulțumim că ești aici!</h3>
+
+                    <p>În fiecare etapă a transformării tale, vom fi alături de tine – cu informații clare, suport real și o comunitate care te încurajează.</p>
+                    <p><strong>Fără promisiuni goale. Doar progres real.</strong></p>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+
+<!-- AdSense Integration -->
+{% if adsense_locations.article_top %}
+    <div class="container my-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="ad-container text-center">
+                    {{ adsense_locations.article_top|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

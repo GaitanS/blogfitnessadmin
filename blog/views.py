@@ -148,6 +148,18 @@ def bmi_calculator(request):
 
     return render(request, 'blog/bmi_calculator.html', context)
 
+def despre_noi(request):
+    # Get AdSense locations
+    adsense_locations = {
+        ad.name: ad.ad_code for ad in AdSenseLocation.objects.filter(is_active=True)
+    }
+
+    context = {
+        'adsense_locations': adsense_locations,
+    }
+
+    return render(request, 'blog/despre_noi.html', context)
+
 # @csrf_exempt # Removed csrf_exempt
 def subscribe_newsletter(request):
     if request.method == 'POST':
